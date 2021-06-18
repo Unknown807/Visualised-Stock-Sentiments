@@ -4,7 +4,7 @@
   "description": "Looks at stock sentiments and visualises them",
   "main": "index.js",
   "scripts": {
-    "start": "tsc",
+    "start": "tsc && browserify ./dist/scripts/index.js -o ./dist/scripts/index.js",
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
@@ -22,9 +22,15 @@
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
+    "browserify": "^17.0.0",
     "eslint": "^7.28.0",
     "jest": "^27.0.4",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "vega": "^5.20.2",
+    "vega-embed": "^6.18.2",
+    "vega-lite": "^5.1.0"
   }
 }
