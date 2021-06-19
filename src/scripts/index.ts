@@ -1,6 +1,7 @@
 import { Config, TopLevelSpec, compile } from "vega-lite";
 import vegaEmbed from "vega-embed";
 import { Spec } from "vega";
+import { InlineDataset } from "vega-lite/build/src/data";
 
 let chartSpec: TopLevelSpec;
 let vegaSpec: Spec;
@@ -16,8 +17,8 @@ chartSpec = {
     },
     mark: 'bar',
     encoding: {
-      x: {field: 'a', type: 'ordinal'},
-      y: {field: 'b', type: 'quantitative'}
+      x: {field: 'ticker', type: 'ordinal'},
+      y: {field: 'no_of_comments', type: 'quantitative'}
     },
   };
 
@@ -28,8 +29,10 @@ config = {
 }
 
 const refreshButton = <HTMLButtonElement>document.getElementById("refresh-button");
+
+const bullCheck = <HTMLInputElement>document.getElementById("bullish-checkbox");
+const bearCheck = <HTMLInputElement>document.getElementById("bearish-checkbox");
 const chartTypeInput = <HTMLInputElement>document.getElementById("chart-types-select");
-const limitInput = <HTMLInputElement>document.getElementById("limit-input");
 
 refreshButton?.addEventListener("click", function(): void {
   embedChart();
@@ -38,21 +41,18 @@ refreshButton?.addEventListener("click", function(): void {
 //let selectedRadio = document.querySelector("input[name='type']:checked")?.nodeValue;
 
 function embedChart() {
-  let data: Ijson[] | null = useSentiments();
+  let limit: number = Number((<HTMLInputElement>document.getElementById("limit-input")).value);
+  if (limit < 0 || limit > 50) {
+    limit = 50;
+  }
+
+  let data = <InlineDataset>useSentiments()?.slice(0, limit);
+
+  console.log(limit);
   console.log(data);
 
   chartSpec["data"] = {
-    values: [
-      {a: 'A', b: 28},
-      {a: 'B', b: 55},
-      {a: 'C', b: 43},
-      {a: 'D', b: 91},
-      {a: 'E', b: 81},
-      {a: 'F', b: 53},
-      {a: 'G', b: 19},
-      {a: 'H', b: 87},
-      {a: 'I', b: 52}
-    ]
+    values: data
   }
 
   vegaSpec = compile(chartSpec, {config}).spec;
