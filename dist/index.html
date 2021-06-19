@@ -3,10 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>Stock Sentiment Visualiser</title>
+        <link rel="stylesheet" href="./styles/index.css"/>
     </head>
 
     <body>
-        <div id="vis"></div>
+        <div>
+            <form id="options-form">
+                <button id="refresh-button" type="button">Refresh</button>
+                
+                <br />
+
+                <label for="chart-types-select">Chart Types: </label>
+                <select id="chart-types-select">
+                    <option value="vbg">Vertical Bar Graph</option>
+                </select>
+
+                <label for="limit-input">Data Limit: </label>
+                <input id="limit-input" type="number" placeholder="1-50" min="1" max="50"/>
+
+                <label for="bullish-radio">Bullish</label>
+                <input type="radio" id="bullish-radio" name="type" value="bullish" />
+                <label for="bearish-radio">Bearish</label>
+                <input type="radio" id="bearish-radio" name="type" value="bearish" />
+            </form>
+        </div>
+
+        <div id="canvas"></div>
 
         <script src="./scripts/index.js"></script>
         <script src="./scripts/getData.js"></script>

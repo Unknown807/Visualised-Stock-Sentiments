@@ -32,4 +32,4 @@ const config: Config = {
 
 const vegaSpec = compile(yourVlSpec, {config}).spec;
 
-vegaEmbed('#vis', vegaSpec);
+vegaEmbed('#canvas', vegaSpec);
