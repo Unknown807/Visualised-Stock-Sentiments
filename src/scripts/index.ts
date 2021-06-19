@@ -1,11 +1,10 @@
-import { Config, TopLevelSpec, compile } from "vega-lite";
+import { TopLevelSpec, compile } from "vega-lite";
 import vegaEmbed from "vega-embed";
 import { Spec } from "vega";
 import { InlineDataset } from "vega-lite/build/src/data";
 
 let chartSpec: TopLevelSpec;
 let vegaSpec: Spec;
-let config: Config;
 
 chartSpec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
@@ -28,15 +27,15 @@ chartSpec = {
       y: {
         field: 'no_of_comments', 
         type: 'quantitative'
+      },
+      color: {
+        field: "sentiment",
+        scale: {
+          range: ["#D73A52", "#32A852"]
+        }
       }
     },
   };
-
-config = {
-    bar: {
-        color: "firebrick"
-    }
-}
 
 const refreshButton = <HTMLButtonElement>document.getElementById("refresh-button");
 
@@ -45,14 +44,10 @@ const bearCheck = <HTMLInputElement>document.getElementById("bearish-checkbox");
 const limitInput = <HTMLInputElement>document.getElementById("limit-input");
 const chartTypeInput = <HTMLInputElement>document.getElementById("chart-types-select");
 
-
-
 refreshButton?.addEventListener("click", function(): void {
   refreshSentiments();
   embedChart();
 });
-
-//let selectedRadio = document.querySelector("input[name='type']:checked")?.nodeValue;
 
 function embedChart() {
   const dataOrNull: Ijson[] | null = useSentiments();
@@ -61,7 +56,6 @@ function embedChart() {
     return;
   }
 
-  //let data: Ijson[] = sortData(dataOrNull)
   let data: Ijson[] = filterCheckboxes(dataOrNull);
   data = limitData(data);
   
@@ -70,6 +64,6 @@ function embedChart() {
     values: <InlineDataset>data
   }
 
-  vegaSpec = compile(chartSpec, {config}).spec;
+  vegaSpec = compile(chartSpec).spec;
   vegaEmbed('#canvas', vegaSpec);
 }
