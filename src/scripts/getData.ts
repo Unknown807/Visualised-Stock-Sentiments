@@ -23,12 +23,13 @@ async function saveSentiments() {
         });   
 }
 
-saveSentiments();
-
-let data: string | null = localStorage.getItem("data");
-if (data !== null) {
-    data = JSON.parse(data);
-    console.log(data);
-} else {
-    alert("Error reading saved data");
+function useSentiments(): Ijson[] | null {
+    saveSentiments();
+    let data: string | null = localStorage.getItem("data");
+    if (data !== null) {
+        return JSON.parse(data);
+    } else {
+        alert("Error reading saved data");
+        return null;
+    }
 }
