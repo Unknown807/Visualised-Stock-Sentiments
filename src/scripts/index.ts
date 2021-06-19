@@ -17,8 +17,18 @@ chartSpec = {
     },
     mark: 'bar',
     encoding: {
-      x: {field: 'ticker', type: 'ordinal'},
-      y: {field: 'no_of_comments', type: 'quantitative'}
+      x: {
+        field: 'ticker', 
+        type: 'ordinal',
+        sort: {
+          field: "no_of_comments",
+          order: "descending"
+        }
+      },
+      y: {
+        field: 'no_of_comments', 
+        type: 'quantitative'
+      }
     },
   };
 
@@ -32,27 +42,32 @@ const refreshButton = <HTMLButtonElement>document.getElementById("refresh-button
 
 const bullCheck = <HTMLInputElement>document.getElementById("bullish-checkbox");
 const bearCheck = <HTMLInputElement>document.getElementById("bearish-checkbox");
+const limitInput = <HTMLInputElement>document.getElementById("limit-input");
 const chartTypeInput = <HTMLInputElement>document.getElementById("chart-types-select");
 
+
+
 refreshButton?.addEventListener("click", function(): void {
+  refreshSentiments();
   embedChart();
 });
 
 //let selectedRadio = document.querySelector("input[name='type']:checked")?.nodeValue;
 
 function embedChart() {
-  let limit: number = Number((<HTMLInputElement>document.getElementById("limit-input")).value);
-  if (limit < 0 || limit > 50) {
-    limit = 50;
+  const dataOrNull: Ijson[] | null = useSentiments();
+  if (dataOrNull === null) {
+    alert("Data cannot be null, must be an error with the API. Try again later");
+    return;
   }
 
-  let data = <InlineDataset>useSentiments()?.slice(0, limit);
-
-  console.log(limit);
-  console.log(data);
+  //let data: Ijson[] = sortData(dataOrNull)
+  let data: Ijson[] = filterCheckboxes(dataOrNull);
+  data = limitData(data);
+  
 
   chartSpec["data"] = {
-    values: data
+    values: <InlineDataset>data
   }
 
   vegaSpec = compile(chartSpec, {config}).spec;

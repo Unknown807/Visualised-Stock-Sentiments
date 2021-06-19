@@ -23,8 +23,11 @@ async function saveSentiments() {
         });   
 }
 
-function useSentiments(): Ijson[] | null {
+function refreshSentiments() {
     saveSentiments();
+}
+
+function useSentiments(): Ijson[] | null {
     let data: string | null = localStorage.getItem("data");
     if (data !== null) {
         return JSON.parse(data);
