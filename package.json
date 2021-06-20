@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Unknown807/Gonnabeafinancialprogramthing.git"
+    "url": "git+https://github.com/Unknown807/VisualisedStockSentiments.git"
   },
   "author": "Unknown807",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Unknown807/Gonnabeafinancialprogramthing/issues"
+    "url": "https://github.com/Unknown807/VisualisedStockSentiments/issues"
   },
-  "homepage": "https://github.com/Unknown807/Gonnabeafinancialprogramthing#readme",
+  "homepage": "https://github.com/Unknown807/VisualisedStockSentiments#readme",
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
