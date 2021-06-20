@@ -2,40 +2,10 @@ import { TopLevelSpec, compile } from "vega-lite";
 import vegaEmbed from "vega-embed";
 import { Spec } from "vega";
 import { InlineDataset } from "vega-lite/build/src/data";
+import { commentsBar } from "./commentsBar";
 
 let chartSpec: TopLevelSpec;
 let vegaSpec: Spec;
-
-chartSpec = {
-    $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-    description: 'A simple bar chart with embedded data.',
-    height: "container",
-    width: "container",
-    data: {
-      values: []
-    },
-    mark: 'bar',
-    encoding: {
-      x: {
-        field: 'ticker', 
-        type: 'ordinal',
-        sort: {
-          field: "no_of_comments",
-          order: "descending"
-        }
-      },
-      y: {
-        field: 'no_of_comments', 
-        type: 'quantitative'
-      },
-      color: {
-        field: "sentiment",
-        scale: {
-          range: ["#D73A52", "#32A852"]
-        }
-      }
-    },
-  };
 
 const refreshButton = <HTMLButtonElement>document.getElementById("refresh-button");
 
@@ -69,6 +39,13 @@ function embedChart() {
   const dataOrNull: Ijson[] | null = useSentiments();
   if (dataOrNull === null) {
     return;
+  }
+
+  const chartType: string = (<HTMLInputElement>document.getElementById("chart-types-select")).value;
+  switch (chartType) {
+    case "0":
+      chartSpec = commentsBar;
+      break;
   }
 
   let data: Ijson[] = filterCheckboxes(dataOrNull);

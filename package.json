@@ -4,7 +4,9 @@
   "description": "Looks at stock sentiments and visualises them",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && browserify ./dist/scripts/index.js -o ./dist/scripts/index.js",
+    "index-brwsy": "browserify ./dist/scripts/index.js -o ./dist/scripts/index.js",
+    "commentsBar-brwsy": "browserify ./dist/scripts/commentsBar.js -o ./dist/scripts/commentsBar.js",
+    "start": "tsc && npm run index-brwsy && npm run commentsBar-brwsy",
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
