@@ -49,10 +49,25 @@ refreshButton?.addEventListener("click", function(): void {
   embedChart();
 });
 
+bullCheck?.addEventListener("change", function(): void {
+  embedChart();
+});
+
+bearCheck?.addEventListener("change", function(): void {
+  embedChart();
+});
+
+chartTypeInput?.addEventListener("change", function(): void {
+  embedChart();
+});
+
+limitInput?.addEventListener("input", function(): void {
+  embedChart();
+});
+
 function embedChart() {
   const dataOrNull: Ijson[] | null = useSentiments();
   if (dataOrNull === null) {
-    alert("Data cannot be null, must be an error with the API. Try again later");
     return;
   }
 

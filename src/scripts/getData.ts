@@ -32,7 +32,7 @@ function useSentiments(): Ijson[] | null {
     if (data !== null) {
         return JSON.parse(data);
     } else {
-        alert("Error reading saved data");
+        alert("Error reading saved data, have you tried refreshing?");
         return null;
     }
 }
