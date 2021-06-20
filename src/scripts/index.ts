@@ -3,12 +3,15 @@ import vegaEmbed from "vega-embed";
 import { Spec } from "vega";
 import { InlineDataset } from "vega-lite/build/src/data";
 import { commentsBar } from "./commentsBar";
+import { sentimentsSym } from "./sentimentsSym";
+import { sentimentBar } from "./sentimentsBar";
+import { sentimentsBubble } from "./sentimentsBubble";
+import { commentsSym } from "./commentsSym";
 
 let chartSpec: TopLevelSpec;
 let vegaSpec: Spec;
 
 const refreshButton = <HTMLButtonElement>document.getElementById("refresh-button");
-
 const bullCheck = <HTMLInputElement>document.getElementById("bullish-checkbox");
 const bearCheck = <HTMLInputElement>document.getElementById("bearish-checkbox");
 const limitInput = <HTMLInputElement>document.getElementById("limit-input");
@@ -46,12 +49,23 @@ function embedChart() {
     case "0":
       chartSpec = commentsBar;
       break;
+    case "1":
+      chartSpec = sentimentBar;
+      break;
+    case "2":
+      chartSpec = sentimentsSym;
+      break;
+    case "3":
+      chartSpec = sentimentsBubble;
+      break;
+    case "4":
+      chartSpec = commentsSym;
+      break;
   }
 
   let data: Ijson[] = filterCheckboxes(dataOrNull);
   data = limitData(data);
   
-
   chartSpec["data"] = {
     values: <InlineDataset>data
   }

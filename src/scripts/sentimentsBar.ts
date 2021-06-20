@@ -1,13 +1,9 @@
-/* I could use one json structure for the spec and change it dynamically when the user changes
-the chart. However, having a separate file to define each structure is a lot easier and significantly more
-readable.
-*/
 
 import { TopLevelSpec } from "vega-lite";
 
-export const commentsBar: TopLevelSpec = {
+export const sentimentBar: TopLevelSpec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-    description: "Bar chart for total number of comments for stock sentiment",
+    description: "Bar chart for stock sentiments",
     height: "container",
     width: "container",
     data: {
@@ -24,14 +20,14 @@ export const commentsBar: TopLevelSpec = {
         }
       },
       y: {
-        field: "no_of_comments", 
+        field: "sentiment_score", 
         type: "quantitative"
       },
       tooltip: [
         {
-          field: "sentiment_score",
+          field: "no_of_comments",
           type: "quantitative",
-          title: "Sentiment"
+          title: "Comments"
         }
       ],
       color: {

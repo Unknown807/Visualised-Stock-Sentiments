@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "index-brwsy": "browserify ./dist/scripts/index.js -o ./dist/scripts/index.js",
-    "commentsBar-brwsy": "browserify ./dist/scripts/commentsBar.js -o ./dist/scripts/commentsBar.js",
-    "start": "tsc && npm run index-brwsy && npm run commentsBar-brwsy",
+    "cmtbrs": "browserify ./dist/scripts/commentsBar.js -o ./dist/scripts/commentsBar.js",
+    "cmtsym": "browserify ./dist/scripts/commentsSym.js -o ./dist/scripts/commentsSym.js",
+    "snbrs": "browserify ./dist/scripts/sentimentsBar.js -o ./dist/scripts/sentimentsBar.js",
+    "snsym": "browserify ./dist/scripts/sentimentsSym.js -o ./dist/scripts/sentimentsSym.js",
+    "snbbl": "browserify ./dist/scripts/sentimentsBubble.js -o ./dist/scripts/sentimentsBubble.js",
+    "start": "tsc && npm run index-brwsy && npm run cmtbrs && npm run snbrs && npm run snsym && npm run snbbl",
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
