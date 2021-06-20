@@ -1,13 +1,13 @@
-
-import { TopLevelSpec } from "vega-lite";
-
-export const commentsSym: TopLevelSpec = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.commentsSym = void 0;
+exports.commentsSym = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
     description: "Bar chart for total number of comments for stock sentiment",
     height: "container",
     width: "container",
     data: {
-      values: []
+        values: []
     },
     transform: [
         {
@@ -49,7 +49,7 @@ export const commentsSym: TopLevelSpec = {
             type: "nominal"
         },
         size: {
-           value: 20
+            value: 20
         },
     }
 };
