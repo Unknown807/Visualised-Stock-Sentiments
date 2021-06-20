@@ -2,8 +2,8 @@
 import { TopLevelSpec } from "vega-lite";
 
 export const commentsSym: TopLevelSpec = {
-    $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-    description: 'Bar chart for total number of comments for stock sentiment',
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    description: "Bar chart for total number of comments for stock sentiment",
     height: "container",
     width: "container",
     data: {

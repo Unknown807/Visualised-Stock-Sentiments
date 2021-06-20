@@ -9,7 +9,7 @@ async function getSentiments(): Promise<Ijson[]> {
     return fetch("https://dashboard.nbshare.io/api/v1/apps/reddit")
         .then(res => res.json())
         .then(res => {
-            return res as Ijson[]
+            return res as Ijson[];
         });
 }
 
@@ -28,7 +28,7 @@ function refreshSentiments() {
 }
 
 function useSentiments(): Ijson[] | null {
-    let data: string | null = localStorage.getItem("data");
+    const data: string | null = localStorage.getItem("data");
     if (data !== null) {
         return JSON.parse(data);
     } else {

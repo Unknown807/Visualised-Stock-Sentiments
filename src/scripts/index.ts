@@ -68,8 +68,8 @@ function embedChart() {
   
   chartSpec["data"] = {
     values: <InlineDataset>data
-  }
+  };
 
   vegaSpec = compile(chartSpec).spec;
-  vegaEmbed('#canvas', vegaSpec);
+  vegaEmbed("#canvas", vegaSpec);
 }

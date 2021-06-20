@@ -16,7 +16,7 @@ function sortData(data: Ijson[]): Ijson[] {
 }
 
 function limitData(data: Ijson[]): Ijson[] {
-    let limit: number = Number((<HTMLInputElement>document.getElementById("limit-input")).value);
+    let limit = Number((<HTMLInputElement>document.getElementById("limit-input")).value);
     if (limit < 0 || limit > data.length) {
       limit = data.length;
     }
@@ -25,10 +25,9 @@ function limitData(data: Ijson[]): Ijson[] {
 }
 
 function filterCheckboxes(data: Ijson[]): Ijson[] {
-    let bullish: boolean = (<HTMLInputElement>document.getElementById("bullish-checkbox")).checked;
-    let bearish: boolean = (<HTMLInputElement>document.getElementById("bearish-checkbox")).checked;
-
-    let newData: Ijson[] = [];
+    const bullish: boolean = (<HTMLInputElement>document.getElementById("bullish-checkbox")).checked;
+    const bearish: boolean = (<HTMLInputElement>document.getElementById("bearish-checkbox")).checked;
+    const newData: Ijson[] = [];
 
     for (let i=0; i<data.length; i++) {
         if (bullish) {
