@@ -2,6 +2,8 @@
 
 Have a go via GitHub pages - https://unknown807.github.io/Visualised-Stock-Sentiments/
 
+There is a problem that can be encountered with CORS, so install this extension and enable CORS and then fetching data from the API should work and display: https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
+
 ## Description
 
 A simple visualisation using a few different chart types of top 50 stock sentiments (a score between 0 and 1) on the WSB subreddit, via an api: https://dashboard.nbshare.io/apps/reddit/api/
